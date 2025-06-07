@@ -1,10 +1,12 @@
 'use strict';
-import {localStorageResources} from './resourcevault.js';
-
-export const resourceLibraryArray = [];
-export const resourceCollectionArray = [];
+//import {localStorageResources} from './resourcevault.js';
+import {resourceLibraryArray, resourceCollectionArray, localStorageResources} from './arrayData.js';
 
 const AddResourceButton = document.querySelector('#addResourceButton');
+
+
+AddResourceButton.addEventListener('click', ResourceVault);
+
 
 // Constructor function
 function Resources(title, description, collection, url, id) {
@@ -87,7 +89,6 @@ if (storageAvailable("localStorage")) {
   console.log('Too bad, no localStorage for us');
 }
 
-AddResourceButton.addEventListener('click', ResourceVault);
 
 
   
