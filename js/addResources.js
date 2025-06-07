@@ -1,4 +1,10 @@
 'use strict';
+import {localStorageResources} from './resourcevault.js';
+
+export const resourceLibraryArray = [];
+export const resourceCollectionArray = [];
+
+const AddResourceButton = document.querySelector('#addResourceButton');
 
 // Constructor function
 function Resources(title, description, collection, url, id) {
@@ -36,7 +42,6 @@ function ResourceVault() {
     console.log(resourceLibraryArray);
     console.log(resourceCollectionArray);
 
-    
     storeArrayToLocalStorage();
     //localStorageResources();
     location.reload(); // Reload the page to reflect changes
@@ -48,47 +53,12 @@ function storeArrayToLocalStorage() {
     localStorage.setItem('resourceCollections', JSON.stringify(resourceCollectionArray));
 }
 
-function localStorageResources(){
-    // Load arrays from localStorage
-    const savedLibrary = localStorage.getItem('resourceLibrary');
-    const savedCollections = localStorage.getItem('resourceCollections');
-
-    if (savedLibrary) {
-        // Parse the stored JSON string back to an array
-        const parsedLibrary = JSON.parse(savedLibrary);
-        resourceLibraryArray.length = 0; // Clear existing array
-        resourceLibraryArray.push(...parsedLibrary); // Add saved items
-    }
-
-    if (savedCollections) {
-        const parsedCollections = JSON.parse(savedCollections);
-        resourceCollectionArray.length = 0;
-        resourceCollectionArray.push(...parsedCollections);
-    }
-}
-
+// Load resources and collections from localStorage when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     localStorageResources();
     console.log('Loaded resources:', resourceLibraryArray);
     console.log('Loaded collections:', resourceCollectionArray);
 });
-
-const resourceLibraryArray = [];
-const resourceCollectionArray = [];
-
-
-const AddResourceButton = document.querySelector('#addResourceButton');
-
-/*document.addEventListener('DOMContentLoaded', function () {
-    setTimeout(function () {
-        
-        document.getElementById('resources').textContent=
-        'displayResourceLibrary()';
-    }, 2000); 
-});*/
-
-AddResourceButton.addEventListener('click', ResourceVault);
-
 
 //check if localStorage is available
 // This function checks if localStorage is available and not full
@@ -117,6 +87,7 @@ if (storageAvailable("localStorage")) {
   console.log('Too bad, no localStorage for us');
 }
 
+AddResourceButton.addEventListener('click', ResourceVault);
 
 
   
