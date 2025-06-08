@@ -3,10 +3,7 @@
 import {resourceLibraryArray, resourceCollectionArray, localStorageResources} from './arrayData.js';
 
 const AddResourceButton = document.querySelector('#addResourceButton');
-
-
 AddResourceButton.addEventListener('click', ResourceVault);
-
 
 // Constructor function
 function Resources(title, description, collection, url, id) {
