@@ -2,8 +2,13 @@
 //import {localStorageResources} from './resourcevault.js';
 import {resourceLibraryArray, resourceCollectionArray, localStorageResources, storeArrayToLocalStorage} from './arrayData.js';
 
-const AddResourceButton = document.querySelector('#addResourceButton');
-AddResourceButton.addEventListener('click', ResourceVault);
+const saveResourceButton = document.querySelector('#saveResourceButton');
+saveResourceButton.addEventListener('click', editResourceVault);
+
+// Get the URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+// Get the resourceId from the URL
+const resourceId = urlParams.get('resourceId');  // This will be "abc123"
 
 // Constructor function
 function Resources(title, description, collection, url, id) {
@@ -14,7 +19,7 @@ function Resources(title, description, collection, url, id) {
     this.resourceId = id;
 }
 // Function to handle adding resources to the vault
-function ResourceVault() {
+function editResourceVault() {
     // Get form values when button is clicked
     const resourceTitle = document.querySelector('#resourceTitle').value.trim();
     const resourceDetailsInput = document.querySelector('#resourceDetails').value.trim();
@@ -27,7 +32,7 @@ function ResourceVault() {
     // using the constructor function
     const resourceLibrary = new Resources(resourceTitle, resourceDetailsInput, resourceCollection, resourceLink, uuid);
     
-    // Add to arrays
+    // Add to arrays    
     resourceLibraryArray.push(resourceLibrary);
     
     const collectionExists = resourceCollectionArray.some(collection => collection.toLowerCase() === resourceLibrary.resourceCollection.toLowerCase());
@@ -46,39 +51,28 @@ function ResourceVault() {
     location.reload(); // Reload the page to reflect changes
 }
 
+function editResource(){
+    resourceLibraryArray.find(resource => {
+      if(resource.resourceId === resourceId){
+        document.querySelector('#resourceTitle').value = resource.resourceTitle;
+        document.querySelector('#resourceDetails').value = resource.resourceDetails;
+        document.querySelector('#resourceCollection').value = resource.resourceCollection;
+        document.querySelector('#resourceUrl').value = resource.resourceLink;
+        return resource;
+      }
+    });
+}
+
 // Load resources and collections from localStorage when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     localStorageResources();
+    editResource();
+    // Now you can use this ID to load the correct resource
+    console.log('Editing resource:', resourceId);
+
     console.log('Loaded resources:', resourceLibraryArray);
     console.log('Loaded collections:', resourceCollectionArray);
 });
-
-//check if localStorage is available
-// This function checks if localStorage is available and not full
-function storageAvailable(type) {
-  let storage;
-  try {
-    storage = window[type];
-    const x = "__storage_test__";
-    storage.setItem(x, x);
-    storage.removeItem(x);
-    return true;
-  } catch (e) {
-    return (
-      e instanceof DOMException &&
-      e.name === "QuotaExceededError" &&
-      // acknowledge QuotaExceededError only if there's something already stored
-      storage &&
-      storage.length !== 0
-    );
-  }
-}
-
-if (storageAvailable("localStorage")) {
-  console.log('Yippee! We can use localStorage awesomeness');
-} else {
-  console.log('Too bad, no localStorage for us');
-}
 
 
 

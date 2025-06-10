@@ -23,3 +23,9 @@ export function localStorageResources(){
         resourceCollectionArray.push(...parsedCollections);
     }
 }
+
+export function storeArrayToLocalStorage() {
+    //Save arrays to localStorage
+    localStorage.setItem('resourceLibrary', JSON.stringify(resourceLibraryArray));
+    localStorage.setItem('resourceCollections', JSON.stringify(resourceCollectionArray));
+}
