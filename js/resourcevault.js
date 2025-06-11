@@ -70,7 +70,7 @@ function deleteResource(resourceId) {
     if(index !== -1){
         resourceLibraryArray.splice(index, 1);
         localStorage.setItem('resourceLibrary', JSON.stringify(resourceLibraryArray));          
-        location.reload();
+        location.href = 'home page.html';
     }
 }
 
