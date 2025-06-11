@@ -1,10 +1,6 @@
 'use strict';
 import {resourceLibraryArray, resourceCollectionArray, localStorageResources} from './arrayData.js';
 
-// Event listener for the save button
-const saveResourceButton = document.querySelector('#saveResourceButton');
-saveResourceButton.addEventListener('click', editResourceVault);
-
 // Get the URL parameters
 const urlParams = new URLSearchParams(window.location.search);
 // Get the resourceId from the URL
@@ -49,6 +45,26 @@ function viewEditableResource(){
       }
     });
 }
+
+//Function to delete a resource
+function deleteResource() {
+  const index = resourceLibraryArray.findIndex(resource => resource.resourceId === resourceId);
+
+  if(index !== -1){
+      resourceLibraryArray.splice(index, 1);
+      localStorage.setItem('resourceLibrary', JSON.stringify(resourceLibraryArray));  
+      location.reload();
+  }
+}
+
+// Event listener for the save button
+const saveResourceButton = document.querySelector('#saveResourceButton');
+saveResourceButton.addEventListener('click', editResourceVault);
+
+
+// Event listener for the delete button
+const deleteResourceButton = document.querySelector('#deleteResourceButton');
+deleteResourceButton.addEventListener('click', deleteResource);
 
 // Load resources and collections from localStorage when the page loads
 document.addEventListener('DOMContentLoaded', () => {
