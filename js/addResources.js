@@ -43,6 +43,7 @@ function ResourceVault() {
 
     storeArrayToLocalStorage();
     //localStorageResources();
+    alert('Resource added successfully');
     location.reload(); // Reload the page to reflect changes
 }
 
