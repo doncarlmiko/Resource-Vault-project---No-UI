@@ -7,14 +7,30 @@
 </head>
 <body>
     <!--Sample layout for Editing Resources-->
-    <input type="text" id="resourceTitle" placeholder="Enter Title">
-    <input type="text" id="resourceUrl" placeholder="Enter URL">
-    <input type="text" id="resourceDetails" placeholder="Enter Description">
-    <input type="text" id="resourceCollection" placeholder="Enter Collection name">
+    <h2 type="text" id="resourceTitle" contenteditable="true"></h2>
+
+    <p type="text" id="resourceUrl" contenteditable="true">
+        <span contenteditable="false">Resource Link: </span>
+        <span id="resourceUrlData"></span>
+    </p>
+
+    <p type="text" id="resourceCollection" contenteditable="true">
+        <span contenteditable="false">Resource Collection:</span>
+        <span id="resourceCollectionData"></span>
+    </p>
+
+    <p type="text" id="resourceDetails" contenteditable="true">
+        <span contenteditable="false">Resource Details:</span>
+        <span id="resourceDetailsData"></span>
+    </p>
+    
+
     <button type='button' id="saveResourceButton">Save Changes</button>
 
     <button type='button' id="deleteResourceButton">Delete this resources</button>
 
-    <script type="module" src="../js/editResources.js" defer></script>
+    <button type='button' id="readingModeResourceButton">Reading Mode</button>
+
+    <script type="module" src="/js/editResources.js" defer></script>
 </body>
 </html>
