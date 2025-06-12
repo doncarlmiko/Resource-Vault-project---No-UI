@@ -83,7 +83,7 @@ function deleteResource() {
 // Function to view the reading mode resource
 function readingModeResource(){
   localStorage.setItem('resourceId', resourceId);
-  location.href = `reading mode resources.html?resourceId=${resourceId}`;
+  location.href = `../html/reading mode resources.html?resourceId=${resourceId}`;
 }
 
 // Load resources and collections from localStorage when the page loads
