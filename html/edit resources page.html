@@ -9,26 +9,23 @@
     <!--Sample layout for Editing Resources-->
     <h2 type="text" id="resourceTitle" contenteditable="true"></h2>
 
-    <p type="text" id="resourceUrl" contenteditable="true">
-        <span contenteditable="false">Resource Link: </span>
-        <span id="resourceUrlData"></span>
-    </p>
+    <div class="resource-field">
+        <label>Resource Link: </label>
+        <span id="resourceUrlData" contenteditable="true"></span>
+    </div>
 
-    <p type="text" id="resourceCollection" contenteditable="true">
-        <span contenteditable="false">Resource Collection:</span>
-        <span id="resourceCollectionData"></span>
-    </p>
+    <div class="resource-field">
+        <label>Resource Collection: </label>
+        <span id="resourceCollectionData" contenteditable="true"></span>
+    </div>
 
-    <p type="text" id="resourceDetails" contenteditable="true">
-        <span contenteditable="false">Resource Details:</span>
-        <span id="resourceDetailsData"></span>
-    </p>
-    
+    <div class="resource-field">
+        <label>Resource Details: </label>
+        <span id="resourceDetailsData" contenteditable="true"></span>
+    </div>
 
     <button type='button' id="saveResourceButton">Save Changes</button>
-
     <button type='button' id="deleteResourceButton">Delete this resources</button>
-
     <button type='button' id="readingModeResourceButton">Reading Mode</button>
 
     <script type="module" src="/js/editResources.js" defer></script>
