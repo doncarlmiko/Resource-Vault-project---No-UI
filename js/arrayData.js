@@ -4,6 +4,11 @@
 export const resourceLibraryArray = [];
 export const resourceCollectionArray = [];
 
+//unique ID for resources
+export let uuid = self.crypto.randomUUID();
+//unique ID for collections
+export let uuidCollection = self.crypto.randomUUID();
+
 //function to load the arrays from localStorage
 export function localStorageResources(){
     // Load arrays from localStorage

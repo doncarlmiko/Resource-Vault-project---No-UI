@@ -1,5 +1,5 @@
 'use strict';
-import {resourceLibraryArray, resourceCollectionArray, localStorageResources} from './arrayData.js';
+import {resourceLibraryArray, resourceCollectionArray, localStorageResources, uuidCollection} from './arrayData.js';
 
 // Get the URL parameters
 const urlParams = new URLSearchParams(window.location.search);
@@ -31,12 +31,12 @@ function editResourceVault() {
         resource.resourceCollection = document.querySelector('#resourceCollectionData').textContent;
         resource.resourceLink = document.querySelector('#resourceUrlData').textContent;
 
-        const collectionExists = resourceCollectionArray.some(collection => collection.toLowerCase() === resource.resourceCollection.toLowerCase());
+        const collectionExists = resourceCollectionArray.some(collection => collection.collectionName.toLowerCase() === resource.resourceCollection.toLowerCase());
     
         // Check if the collection already exists in the array
         // If it does not exist, add it to the collection array
         if(!collectionExists){
-          resourceCollectionArray.push(resource.resourceCollection);
+          resourceCollectionArray.push({collectionId: uuidCollection, collectionName: resource.resourceCollection});
           localStorage.setItem('resourceCollections', JSON.stringify(resourceCollectionArray));
         }
 
