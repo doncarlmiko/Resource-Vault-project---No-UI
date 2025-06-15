@@ -1,6 +1,6 @@
 'use strict';
 //import {localStorageResources} from './resourcevault.js';
-import {resourceLibraryArray, resourceCollectionArray, localStorageResources, storeArrayToLocalStorage} from './arrayData.js';
+import {resourceLibraryArray, resourceCollectionArray, localStorageResources, storeArrayToLocalStorage, uuid, uuidCollection} from './arrayData.js';
 
 const AddResourceButton = document.querySelector('#addResourceButton');
 AddResourceButton.addEventListener('click', ResourceVault);
@@ -21,8 +21,6 @@ function ResourceVault() {
     const resourceCollection = document.querySelector('#resourceCollection').value.trim();
     const resourceLink = document.querySelector('#resourceUrl').value.trim();
     
-    let uuid = self.crypto.randomUUID();
-    
     //instantiate a new Resources object
     // using the constructor function
     const resourceLibrary = new Resources(resourceTitle, resourceDetailsInput, resourceCollection, resourceLink, uuid);
@@ -30,12 +28,12 @@ function ResourceVault() {
     // Add to arrays
     resourceLibraryArray.push(resourceLibrary);
     
-    const collectionExists = resourceCollectionArray.some(collection => collection.toLowerCase() === resourceLibrary.resourceCollection.toLowerCase());
+    const collectionExists = resourceCollectionArray.some(collection => collection.collectionName.toLowerCase() === resourceLibrary.resourceCollection.toLowerCase());
     
     // Check if the collection already exists in the array
     // If it does not exist, add it to the collection array
     if(!collectionExists){
-        resourceCollectionArray.push(resourceLibrary.resourceCollection);
+        resourceCollectionArray.push({collectionId: uuidCollection, collectionName: resourceLibrary.resourceCollection});
     }
     
     console.log(resourceLibraryArray);
