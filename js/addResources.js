@@ -32,7 +32,7 @@ function ResourceVault() {
     
     // Check if the collection already exists in the array
     // If it does not exist, add it to the collection array
-    if(!collectionExists){
+    if(!collectionExists && resourceLibrary.resourceCollection !== ""){
         resourceCollectionArray.push({collectionId: uuidCollection, collectionName: resourceLibrary.resourceCollection});
     }
     
