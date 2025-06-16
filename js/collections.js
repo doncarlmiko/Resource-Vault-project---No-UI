@@ -40,12 +40,20 @@ function displayCollectionLibrary(){
                 collectionDivItem.appendChild(collectionTitleItem);
                 collectionDivItem.appendChild(collectionDetailsItem);
     
+                // Add view resources button
+                const viewResourcesButton = document.createElement('button');
+                viewResourcesButton.textContent = 'View Resources';
+                viewResourcesButton.style.marginLeft = '10px';
+                viewResourcesButton.addEventListener('click', () => viewResources(collection.collectionId));
+
+                collectionDivItem.appendChild(viewResourcesButton);
+
                 // Add delete button
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Delete';
                 deleteButton.style.marginLeft = '10px';
                 deleteButton.addEventListener('click', () => deleteCollection(collection.collectionId,collection.collectionName));
-    
+
                 collectionDivItem.appendChild(deleteButton);
     
                 collectionList.appendChild(collectionDivItem);
@@ -54,8 +62,8 @@ function displayCollectionLibrary(){
                     e.preventDefault();
 
                     if(e.target !== deleteButton){
-                        localStorage.setItem('collectionId', collection);
-                        location.href = `edit resources page.html?collectionId=${collection.collectionId}`;
+                        localStorage.setItem('collectionId', collection.collectionId);
+                        location.href = `collection resources item.html?collectionId=${collection.collectionId}`;
 
                         console.log(collection);
                     }
@@ -87,6 +95,13 @@ function deleteCollection(collectionId,collectionName) {
             });
         }
     }
+}
+
+function viewResources(collectionId){
+    const collection = resourceCollectionArray.find(collection => collection.collectionId === collectionId);
+    if(collection){
+        location.href = `collection resources item.html?collectionId=${collection.collectionId}`;
+    } 
 }
 
 // Load collections from localStorage when the page loads
