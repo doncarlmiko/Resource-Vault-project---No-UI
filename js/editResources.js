@@ -1,10 +1,7 @@
 'use strict';
-import {resourceLibraryArray, resourceCollectionArray, localStorageResources, uuidCollection} from './arrayData.js';
+import {resourceLibraryArray, resourceCollectionArray, localStorageResources, uuidCollection, getResourceId} from './arrayData.js';
 
-// Get the URL parameters
-const urlParams = new URLSearchParams(window.location.search);
-// Get the resourceId from the URL
-const resourceId = urlParams.get('resourceId');  // This will be "abc123"
+
 const nonExistingResource = document.querySelector('body');
 
 // Function to trim text content while preserving structure
@@ -19,7 +16,7 @@ function trimTextContent(element) {
 function editResourceVault() {
     // Get form values when button is clicked
     resourceLibraryArray.forEach((resource)=>{
-      if(resource.resourceId === resourceId){
+      if(resource.resourceId === getResourceId()){
         // Trim content before saving
         trimTextContent(document.querySelector('#resourceTitle'));
         trimTextContent(document.querySelector('#resourceDetailsData'));
@@ -53,7 +50,7 @@ function editResourceVault() {
 // Function to view the editable resource
 function viewEditableResource(){
     resourceLibraryArray.find(resource => {
-      if(resource.resourceId === resourceId){
+      if(resource.resourceId === getResourceId()){
         document.querySelector('#resourceTitle').textContent = resource.resourceTitle;
         document.querySelector('#resourceDetailsData').textContent = resource.resourceDetails;
         document.querySelector('#resourceCollectionData').textContent = resource.resourceCollection;
@@ -70,7 +67,7 @@ function viewEditableResource(){
 
 //Function to delete a resource
 function deleteResource() {
-  const index = resourceLibraryArray.findIndex(resource => resource.resourceId === resourceId);
+  const index = resourceLibraryArray.findIndex(resource => resource.resourceId === getResourceId());
 
   if(index !== -1){
       resourceLibraryArray.splice(index, 1);
@@ -82,8 +79,8 @@ function deleteResource() {
 
 // Function to view the reading mode resource
 function readingModeResource(){
-  localStorage.setItem('resourceId', resourceId);
-  location.href = `../html/reading mode resources.html?resourceId=${resourceId}`;
+  localStorage.setItem('resourceId', getResourceId());
+  location.href = `../html/reading mode resources.html?resourceId=${getResourceId()}`;
 }
 
 // Load resources and collections from localStorage when the page loads
@@ -114,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Now you can use this ID to load the correct resource
-    console.log('Editing resource:', resourceId);
+    console.log('Editing resource:', getResourceId());
     console.log('Loaded resources:', resourceLibraryArray);
     console.log('Loaded collections:', resourceCollectionArray);
 });

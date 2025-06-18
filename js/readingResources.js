@@ -1,10 +1,5 @@
 'use strict';
-import { resourceLibraryArray, resourceCollectionArray, localStorageResources } from './arrayData.js';
-
-// Get the URL parameters
-const urlParams = new URLSearchParams(window.location.search);
-// Get the resourceId from the URL
-const resourceId = urlParams.get('resourceId');
+import { resourceLibraryArray, resourceCollectionArray, localStorageResources, getResourceId } from './arrayData.js';
 
 // Function to trim text content while preserving structure
 function trimTextContent(element) {
@@ -16,7 +11,7 @@ function trimTextContent(element) {
 
 // Function to view the resource in reading mode
 function viewResources(){
-    const resource = resourceLibraryArray.find(resource => resource.resourceId === resourceId);
+    const resource = resourceLibraryArray.find(resource => resource.resourceId === getResourceId());
     
     if (resource) {
         document.querySelector('#resourceTitle').textContent = resource.resourceTitle;
@@ -30,7 +25,7 @@ function viewResources(){
         trimTextContent(document.querySelector('#resourceCollectionData'));
         trimTextContent(document.querySelector('#resourceUrlData'));
     } else {
-        console.error('Resource not found:', resourceId);
+        console.error('Resource not found:', getResourceId());
     }
 }
 
@@ -39,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorageResources();
     viewResources();
     
-    console.log('Reading resource:', resourceId);
+    console.log('Reading resource:', getResourceId());
     console.log('Loaded resources:', resourceLibraryArray);
 });
 
