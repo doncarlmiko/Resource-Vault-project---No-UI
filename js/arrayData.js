@@ -4,6 +4,17 @@
 export const resourceLibraryArray = [];
 export const resourceCollectionArray = [];
 
+// Function to get the current resourceId from URL
+export function getResourceId() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('resourceId');
+}
+
+export function getCollectionId() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('collectionId');
+}
+
 //unique ID for resources
 export let uuid = self.crypto.randomUUID();
 //unique ID for collections

@@ -2,7 +2,6 @@
 //importing the arrays from arrayData.js
 import {resourceLibraryArray,resourceCollectionArray, localStorageResources} from './arrayData.js';
 
-
 function displayCollectionLibrary(){
     const collectionList = document.getElementById('collectionList');
     
