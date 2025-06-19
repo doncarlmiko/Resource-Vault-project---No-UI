@@ -56,18 +56,6 @@ function displayCollectionLibrary(){
                 collectionDivItem.appendChild(deleteButton);
     
                 collectionList.appendChild(collectionDivItem);
-
-                collectionDivItem.addEventListener('click', (e) => {
-                    e.preventDefault();
-
-                    if(e.target !== deleteButton){
-                        localStorage.setItem('collectionId', collection.collectionId);
-                        location.href = `collection resources item.html?collectionId=${collection.collectionId}`;
-
-                        console.log(collection);
-                    }
-                });
-                
             });
         }
     }
