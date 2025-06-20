@@ -1,9 +1,6 @@
 'use strict';
 import {resourceLibraryArray, resourceCollectionArray, localStorageResources, uuidCollection, getResourceId} from './arrayData.js';
 
-
-const nonExistingResource = document.querySelector('body');
-
 // Function to trim text content while preserving structure
 function trimTextContent(element) {
     if (element) {
@@ -11,7 +8,6 @@ function trimTextContent(element) {
         element.textContent = text.trim();
     }
 }
-
 // Function to handle adding edited resources to the vault
 function editResourceVault() {
     // Get form values when button is clicked
@@ -20,12 +16,15 @@ function editResourceVault() {
         // Trim content before saving
         trimTextContent(document.querySelector('#resourceTitle'));
         trimTextContent(document.querySelector('#resourceDetailsData'));
-        trimTextContent(document.querySelector('#resourceCollectionData'));
+        /*trimTextContent(document.querySelector('#resourceCollectionData'));*/
         trimTextContent(document.querySelector('#resourceUrlData'));
+
+        const collectionSelect = document.querySelector('#resourceCollectionData');
+        const selectedCollection = collectionSelect.value;
 
         resource.resourceTitle = document.querySelector('#resourceTitle').textContent;
         resource.resourceDetails = document.querySelector('#resourceDetailsData').textContent;
-        resource.resourceCollection = document.querySelector('#resourceCollectionData').textContent;
+        resource.resourceCollection = selectedCollection;
         resource.resourceLink = document.querySelector('#resourceUrlData').textContent;
 
         const collectionExists = resourceCollectionArray.some(collection => collection.collectionName.toLowerCase() === resource.resourceCollection.toLowerCase());
@@ -53,16 +52,42 @@ function viewEditableResource(){
       if(resource.resourceId === getResourceId()){
         document.querySelector('#resourceTitle').textContent = resource.resourceTitle;
         document.querySelector('#resourceDetailsData').textContent = resource.resourceDetails;
-        document.querySelector('#resourceCollectionData').textContent = resource.resourceCollection;
+        viewCollection(resource.resourceCollection);
         document.querySelector('#resourceUrlData').textContent = resource.resourceLink;
 
         // Trim content after loading
         trimTextContent(document.querySelector('#resourceTitle'));
         trimTextContent(document.querySelector('#resourceDetailsData'));
-        trimTextContent(document.querySelector('#resourceCollectionData'));
+        /*trimTextContent(document.querySelector('#resourceCollectionData'));*/
         trimTextContent(document.querySelector('#resourceUrlData'));
       }
     });
+}
+
+function viewCollection(resourceCollectionName){
+
+  resourceCollectionArray.forEach(collection => {
+    const collectionList = document.querySelector('#resourceCollectionData');
+    const defaultOption = document.createElement('option');
+    
+    const collectionData = document.createElement('option');
+    collectionData.value = collection.collectionName;
+    collectionData.textContent = collection.collectionName;
+
+    // Add the default option if the resource collection name is the same as the collection name
+    if(collection.collectionName.toLowerCase() === resourceCollectionName.toLowerCase()){
+      resourceCollectionName = collection.collectionName;
+      
+      defaultOption.selected = true;
+      defaultOption.value = resourceCollectionName;
+      defaultOption.textContent = resourceCollectionName;
+      document.querySelector('#resourceCollectionData').appendChild(defaultOption);
+    }
+    else{
+      collectionList.appendChild(collectionData);
+    }
+      
+  });
 }
 
 //Function to delete a resource
