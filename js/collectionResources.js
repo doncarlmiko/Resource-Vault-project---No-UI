@@ -93,6 +93,5 @@ function deleteResource(resourceId) {
 document.addEventListener('DOMContentLoaded', () => {
     localStorageResources(); // Call this once
     displayResourceLibrary(); // Then display the resources
-
 });
 
