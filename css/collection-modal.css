@@ -1,0 +1,88 @@
+/* Modal Overlay */
+#addCollectionModal::backdrop {
+  background: rgba(0,0,0,0.7);
+}
+
+#addCollectionModal {
+  border: none;
+  border-radius: 8px;
+  padding: 0;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.25);
+  width: 350px;
+  max-width: 90vw;
+  background: #fff;
+}
+
+#addCollectionForm {
+  padding: 2em 2em 1.5em 2em;
+  background: #fff;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.modal-title {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.modal-field {
+  margin-bottom: 1.5em;
+}
+
+.modal-label {
+  display: block;
+  text-align: center;
+  margin-bottom: 0.5em;
+  font-size: 1.1em;
+  color: #444;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 0.7em;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  background: #f3f3f3;
+  margin-bottom: 0.2em;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+.modal-add {
+  background: #FFD600;
+  color: #222;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5em 2em;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.modal-add:hover {
+  background: #ffe066;
+}
+
+.modal-cancel {
+  background: #263238;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5em 2em;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.modal-cancel:hover {
+  background: #37474f;
+} 
