@@ -1,10 +1,11 @@
 'use strict';
 //importing the arrays from arrayData.js
-import {resourceLibraryArray,resourceCollectionArray, localStorageResources, getResourceId, getCollectionId} from './arrayData.js';
+import {resourceLibraryArray,resourceCollectionArray, localStorageResources, getCollectionId} from './arrayData.js';
 
- 
+//function to display the resources in the collection
 function displayResourceLibrary(){
     const resourceList = document.getElementById('resourceList');
+    const collectionName = document.getElementById('collectionName');
     const collectionId = getCollectionId();
     
     console.log('Collection ID from URL:', collectionId);
@@ -14,6 +15,7 @@ function displayResourceLibrary(){
     const getResourceCollection = resourceCollectionArray.find(collection => collection.collectionId === collectionId);
     console.log('Found collection:', getResourceCollection);
 
+    collectionName.textContent = getResourceCollection.collectionName;
 
     if (resourceList) {  // Add check for element existence
         resourceList.textContent = ''; // Clear existing items
@@ -98,7 +100,6 @@ function deleteResource(resourceId) {
 document.addEventListener('DOMContentLoaded', () => {
     localStorageResources(); // Call this once
     displayResourceLibrary(); // Then display the resources
-    getResourceId();
     console.log('Loaded resources:', resourceLibraryArray);
     console.log('Loaded collections:', resourceCollectionArray);
 });
