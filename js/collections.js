@@ -32,7 +32,6 @@ function displayCollectionLibrary(){
                  
                 // Add data attribute for collection ID
                 collectionDivItem.setAttribute('data-collection-id', collection.collectionId);
-                console.log(collection.collectionId);
     
                 collectionDivItem.style.backgroundColor = 'lightblue';
     
@@ -95,6 +94,5 @@ function viewResources(collectionId){
 document.addEventListener('DOMContentLoaded', () => {
     localStorageResources(); // Call this once
     displayCollectionLibrary(); // Then display the collections
-    console.log('Loaded collections:', resourceCollectionArray);
 });
 

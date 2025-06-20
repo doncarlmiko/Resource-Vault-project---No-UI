@@ -33,8 +33,5 @@ function viewResources(){
 document.addEventListener('DOMContentLoaded', () => {
     localStorageResources();
     viewResources();
-    
-    console.log('Reading resource:', getResourceId());
-    console.log('Loaded resources:', resourceLibraryArray);
 });
 
