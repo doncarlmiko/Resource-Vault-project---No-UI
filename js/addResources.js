@@ -36,9 +36,6 @@ function ResourceVault() {
         resourceCollectionArray.push({collectionId: uuidCollection, collectionName: resourceLibrary.resourceCollection});
     }
     
-    console.log(resourceLibraryArray);
-    console.log(resourceCollectionArray);
-
     storeArrayToLocalStorage();
     //localStorageResources();
     alert('Resource added successfully');

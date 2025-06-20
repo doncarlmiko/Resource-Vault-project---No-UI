@@ -31,7 +31,7 @@ function editResourceVault() {
     
         // Check if the collection already exists in the array
         // If it does not exist, add it to the collection array
-        if(!collectionExists){
+        if(!collectionExists && resource.resourceCollection !== ''){
           resourceCollectionArray.push({collectionId: uuidCollection, collectionName: resource.resourceCollection});
           localStorage.setItem('resourceCollections', JSON.stringify(resourceCollectionArray));
         }
@@ -40,8 +40,6 @@ function editResourceVault() {
       }
     });
     
-    console.log(resourceLibraryArray);
-    console.log(resourceCollectionArray);
     alert('Resource updated successfully');
     location.reload(); // Reload the page to reflect changes
 }
@@ -65,29 +63,24 @@ function viewEditableResource(){
 }
 
 function viewCollection(resourceCollectionName){
-
-  resourceCollectionArray.forEach(collection => {
     const collectionList = document.querySelector('#resourceCollectionData');
-    const defaultOption = document.createElement('option');
-    
-    const collectionData = document.createElement('option');
-    collectionData.value = collection.collectionName;
-    collectionData.textContent = collection.collectionName;
+    clearSelectOptions(collectionList); // Clear previous options
 
-    // Add the default option if the resource collection name is the same as the collection name
-    if(collection.collectionName.toLowerCase() === resourceCollectionName.toLowerCase()){
-      resourceCollectionName = collection.collectionName;
-      
-      defaultOption.selected = true;
-      defaultOption.value = resourceCollectionName;
-      defaultOption.textContent = resourceCollectionName;
-      document.querySelector('#resourceCollectionData').appendChild(defaultOption);
-    }
-    else{
-      collectionList.appendChild(collectionData);
-    }
-      
-  });
+    // Add default option
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = 'Select a collection';
+    collectionList.appendChild(defaultOption);
+
+    resourceCollectionArray.forEach(collection => {
+        const option = document.createElement('option');
+        option.value = collection.collectionName;
+        option.textContent = collection.collectionName;
+        if (collection.collectionName.toLowerCase() === resourceCollectionName?.toLowerCase()) {
+            option.selected = true;
+        }
+        collectionList.appendChild(option);
+    });
 }
 
 //Function to delete a resource
@@ -110,36 +103,33 @@ function readingModeResource(){
 
 // Load resources and collections from localStorage when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM Content Loaded');
     localStorageResources();
     viewEditableResource();
     
     // Event listener for the save button
     const saveResourceButton = document.querySelector('#saveResourceButton');
-    console.log('Save button element:', saveResourceButton);
     if (saveResourceButton) {
         saveResourceButton.addEventListener('click', editResourceVault);
     }
 
     // Event listener for the delete button
     const deleteResourceButton = document.querySelector('#deleteResourceButton');
-    console.log('Delete button element:', deleteResourceButton);
     if (deleteResourceButton) {
         deleteResourceButton.addEventListener('click', deleteResource);
     }
 
     // Event listener for the reading mode button
     const readingModeResourceButton = document.querySelector('#readingModeResourceButton');
-    console.log('Reading mode button element:', readingModeResourceButton);
     if (readingModeResourceButton) {
         readingModeResourceButton.addEventListener('click', readingModeResource);
     }
-
-    // Now you can use this ID to load the correct resource
-    console.log('Editing resource:', getResourceId());
-    console.log('Loaded resources:', resourceLibraryArray);
-    console.log('Loaded collections:', resourceCollectionArray);
 });
+
+function clearSelectOptions(selectElement) {
+    while (selectElement.options.length > 0) {
+        selectElement.remove(0);
+    }
+}
 
 
 

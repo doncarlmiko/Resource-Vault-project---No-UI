@@ -30,7 +30,6 @@ function displayResourceLibrary(){
                 
                 // Add data attribute for resource ID
                 resourceDivItem.setAttribute('data-resource-id', resource.resourceId);
-                console.log(resource.resourceId);
     
                 resourceDivItem.style.backgroundColor = 'lightblue';
     
@@ -54,8 +53,6 @@ function displayResourceLibrary(){
                     if(e.target !== deleteButton){
                         localStorage.setItem('resourceId', resource.resourceId);
                         location.href = `edit resources page.html?resourceId=${resource.resourceId}`;
-
-                        console.log(resource.resourceId);
                     }
                 });
                 

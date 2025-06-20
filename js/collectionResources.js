@@ -8,12 +8,8 @@ function displayResourceLibrary(){
     const collectionName = document.getElementById('collectionName');
     const collectionId = getCollectionId();
     
-    console.log('Collection ID from URL:', collectionId);
-    console.log('Resource Collection Array:', resourceCollectionArray);
-
     //find the collection name from the collectionId
     const getResourceCollection = resourceCollectionArray.find(collection => collection.collectionId === collectionId);
-    console.log('Found collection:', getResourceCollection);
 
     collectionName.textContent = getResourceCollection.collectionName;
 
@@ -51,7 +47,6 @@ function displayResourceLibrary(){
                         
                         // Add data attribute for resource ID
                         resourceDivItem.setAttribute('data-resource-id', resource.resourceId);
-                        console.log(resource.resourceId);
             
                         resourceDivItem.style.backgroundColor = 'lightblue';
             
@@ -75,8 +70,6 @@ function displayResourceLibrary(){
                             if(e.target !== deleteButton){
                                 localStorage.setItem('resourceId', resource.resourceId);
                                 location.href = `edit resources page.html?resourceId=${resource.resourceId}`;
-
-                                console.log(resource.resourceId);
                             }
                         });
                     } 
@@ -100,7 +93,5 @@ function deleteResource(resourceId) {
 document.addEventListener('DOMContentLoaded', () => {
     localStorageResources(); // Call this once
     displayResourceLibrary(); // Then display the resources
-    console.log('Loaded resources:', resourceLibraryArray);
-    console.log('Loaded collections:', resourceCollectionArray);
 });
 
