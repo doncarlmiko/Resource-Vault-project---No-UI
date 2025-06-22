@@ -62,6 +62,8 @@ function viewEditableResource(){
     });
 }
 
+// Function to view the collection options (dropdown menu)
+
 function viewCollection(resourceCollectionName){
     const collectionList = document.querySelector('#resourceCollectionData');
     clearSelectOptions(collectionList); // Clear previous options
