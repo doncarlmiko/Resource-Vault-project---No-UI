@@ -85,6 +85,7 @@
 
 .modal-cancel:hover {
   background: #37474f;
+
 }
 
 /* Edit Collection Modal Styles */
@@ -107,4 +108,5 @@
   background: #fff;
   border-radius: 8px;
   box-sizing: border-box;
+
 } 
