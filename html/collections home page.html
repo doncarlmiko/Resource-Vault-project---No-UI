@@ -27,6 +27,25 @@
         </form>
     </dialog>
 
+    <!-- Edit Collection Modal -->
+    <dialog id="editCollectionModal">
+        <form method="dialog" id="editCollectionForm">
+            <h2 class="modal-title">Edit Collection</h2>
+            <div class="modal-field">
+                <label for="editCollectionTitle" class="modal-label">Collection Title</label>
+                <input type="text" id="editCollectionTitle" name="editCollectionTitle" class="modal-input" required>
+            </div>
+            <div class="modal-field">
+                <label for="editCollectionDescription" class="modal-label">Description</label>
+                <input type="text" id="editCollectionDescription" name="editCollectionDescription" class="modal-input">
+            </div>
+            <div class="modal-actions">
+                <button type="submit" id="editCollectionConfirm" class="modal-add">Update</button>
+                <button type="button" id="editCollectionCancel" class="modal-cancel">Cancel</button>
+            </div>
+        </form>
+    </dialog>
+
     <!--Sample layout that displays the Collections-->
     <div id="collectionContainer">
         <h2>Collections</h2>
@@ -40,5 +59,6 @@
     <script type="module" src="../js/collections.js" defer></script>
     <script type="module" src="../js/collectionModal.js" defer></script>
     <script type="module" src="../js/addCollection.js" defer></script>
+    <script type="module" src="../js/editCollection.js" defer></script>
 </body>
 </html>

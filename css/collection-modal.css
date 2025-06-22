@@ -85,4 +85,26 @@
 
 .modal-cancel:hover {
   background: #37474f;
+}
+
+/* Edit Collection Modal Styles */
+#editCollectionModal::backdrop {
+  background: rgba(0,0,0,0.7);
+}
+
+#editCollectionModal {
+  border: none;
+  border-radius: 8px;
+  padding: 0;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.25);
+  width: 350px;
+  max-width: 90vw;
+  background: #fff;
+}
+
+#editCollectionForm {
+  padding: 2em 2em 1.5em 2em;
+  background: #fff;
+  border-radius: 8px;
+  box-sizing: border-box;
 } 

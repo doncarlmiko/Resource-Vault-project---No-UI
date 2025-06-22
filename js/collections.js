@@ -46,6 +46,14 @@ function displayCollectionLibrary(){
 
                 collectionDivItem.appendChild(viewResourcesButton);
 
+                // Add edit button
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.style.marginLeft = '10px';
+                editButton.addEventListener('click', () => editCollection(collection.collectionId));
+
+                collectionDivItem.appendChild(editButton);
+
                 // Add delete button
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Delete';
@@ -60,6 +68,7 @@ function displayCollectionLibrary(){
     }
 }
 
+// Function to delete the collection
 function deleteCollection(collectionId,collectionName) {
     const index = resourceCollectionArray.findIndex(collection => collection.collectionId === collectionId);
     
@@ -83,11 +92,28 @@ function deleteCollection(collectionId,collectionName) {
     }
 }
 
+// Function to view the resources in the collection
 function viewResources(collectionId){
     const collection = resourceCollectionArray.find(collection => collection.collectionId === collectionId);
     if(collection){
         location.href = `collection resources item.html?collectionId=${collection.collectionId}`;
     } 
+}
+
+// Function to Display the collection in the edit modal
+function editCollection(collectionId){
+    const collection = resourceCollectionArray.find(collection => collection.collectionId === collectionId);
+    if(collection){
+        // Populate the edit modal with current collection data
+        document.getElementById('editCollectionTitle').value = collection.collectionName;
+        document.getElementById('editCollectionDescription').value = collection.collectionDescription || '';
+        
+        // Store the collection ID for the update function
+        document.getElementById('editCollectionModal').setAttribute('data-collection-id', collectionId);
+        
+        // Show the edit modal
+        document.getElementById('editCollectionModal').showModal();
+    }
 }
 
 // Load collections from localStorage when the page loads
