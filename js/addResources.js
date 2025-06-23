@@ -18,9 +18,21 @@ function ResourceVault() {
     // Get form values when button is clicked
     const resourceTitle = document.querySelector('#resourceTitle').value.trim();
     const resourceDetailsInput = document.querySelector('#resourceDetails').value.trim();
-    const resourceCollection = document.querySelector('#resourceCollection').value.trim();
+    const resourceCollection = document.querySelector('#resourceCollectionData').value;
+
     const resourceLink = document.querySelector('#resourceUrl').value.trim();
-    
+    const resourceExists = resourceLibraryArray.filter((resource)=> resource.resourceTitle.toLowerCase() === resourceTitle.toLowerCase());
+
+    if(resourceExists.length > 0){
+      alert('Resource already exists');
+      return;
+    }
+
+    if(resourceTitle === ""){
+        alert('Please fill in all fields');
+        return;
+    }
+
     //instantiate a new Resources object
     // using the constructor function
     const resourceLibrary = new Resources(resourceTitle, resourceDetailsInput, resourceCollection, resourceLink, uuid);
@@ -28,26 +40,45 @@ function ResourceVault() {
     // Add to arrays
     resourceLibraryArray.push(resourceLibrary);
     
-    const collectionExists = resourceCollectionArray.some(collection => collection.collectionName.toLowerCase() === resourceLibrary.resourceCollection.toLowerCase());
-    
-    // Check if the collection already exists in the array
-    // If it does not exist, add it to the collection array
-    if(!collectionExists && resourceLibrary.resourceCollection !== ""){
-        resourceCollectionArray.push({collectionId: uuidCollection, collectionName: resourceLibrary.resourceCollection});
-    }
-    
     storeArrayToLocalStorage();
     //localStorageResources();
     alert('Resource added successfully');
     location.reload(); // Reload the page to reflect changes
 }
 
+// Function to view the collection options (dropdown menu)
+
+function viewCollection(){
+  const collectionList = document.querySelector('#resourceCollectionData');
+  clearSelectOptions(collectionList); // Clear previous options
+
+  // Add default option
+  const defaultOption = document.createElement('option');
+  defaultOption.value = '';
+  defaultOption.textContent = 'Select a collection';
+  collectionList.appendChild(defaultOption);
+
+  resourceCollectionArray.forEach(collection => {
+      const option = document.createElement('option');
+      option.value = collection.collectionName;
+      option.textContent = collection.collectionName;
+      collectionList.appendChild(option);
+  });
+}
+
 // Load resources and collections from localStorage when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     localStorageResources();
+    viewCollection();
     console.log('Loaded resources:', resourceLibraryArray);
     console.log('Loaded collections:', resourceCollectionArray);
 });
+
+function clearSelectOptions(selectElement) {
+  while (selectElement.options.length > 0) {
+      selectElement.remove(0);
+  }
+}
 
 //check if localStorage is available
 // This function checks if localStorage is available and not full
