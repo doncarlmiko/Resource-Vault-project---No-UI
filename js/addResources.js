@@ -25,6 +25,7 @@ function ResourceVault() {
     //const resourceCollection = selectedOption.value;
     const resourceCollectionId = selectedOption.getAttribute('collection-id');
 
+
     const resourceLink = document.querySelector('#resourceUrl').value.trim();
     const resourceExists = resourceLibraryArray.filter((resource)=> resource.resourceTitle.toLowerCase() === resourceTitle.toLowerCase());
 
@@ -39,7 +40,6 @@ function ResourceVault() {
     }
 
     if(resourceCollectionId === '') return;
-
     //instantiate a new Resources object
     // using the constructor function
     const resourceLibrary = new Resources(resourceTitle, resourceDetailsInput, resourceLink, uuid, resourceCollectionId);
@@ -69,6 +69,7 @@ function viewCollection(){
       const option = document.createElement('option');
       option.value = collection.collectionName;
       option.textContent = collection.collectionName;
+
       if (option !== '') {
         option.selected = true;
         option.setAttribute('collection-id',collection.collectionId);
