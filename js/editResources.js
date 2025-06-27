@@ -1,5 +1,5 @@
 'use strict';
-import {resourceLibraryArray, resourceCollectionArray, localStorageResources, uuidCollection, getResourceId} from './arrayData.js';
+import {resourceLibraryArray, resourceCollectionArray, localStorageResources, getResourceId} from './arrayData.js';
 
 // Function to trim text content while preserving structure
 function trimTextContent(element) {
@@ -16,25 +16,19 @@ function editResourceVault() {
         // Trim content before saving
         trimTextContent(document.querySelector('#resourceTitle'));
         trimTextContent(document.querySelector('#resourceDetailsData'));
-        /*trimTextContent(document.querySelector('#resourceCollectionData'));*/
         trimTextContent(document.querySelector('#resourceUrlData'));
 
+        //Get the selected options from the dropdown collections
         const collectionSelect = document.querySelector('#resourceCollectionData');
-        const selectedCollection = collectionSelect.value;
+        const selectedOption = collectionSelect.options[collectionSelect.selectedIndex];
+        const selectedCollectionId = selectedOption.getAttribute('collection-id');
 
         resource.resourceTitle = document.querySelector('#resourceTitle').textContent;
         resource.resourceDetails = document.querySelector('#resourceDetailsData').textContent;
-        resource.resourceCollection = selectedCollection;
+        resource.collectionId = selectedCollectionId;
         resource.resourceLink = document.querySelector('#resourceUrlData').textContent;
 
-        const collectionExists = resourceCollectionArray.some(collection => collection.collectionName.toLowerCase() === resource.resourceCollection.toLowerCase());
-    
-        // Check if the collection already exists in the array
-        // If it does not exist, add it to the collection array
-        if(!collectionExists && resource.resourceCollection !== ''){
-          resourceCollectionArray.push({collectionId: uuidCollection, collectionName: resource.resourceCollection});
-          localStorage.setItem('resourceCollections', JSON.stringify(resourceCollectionArray));
-        }
+        // No need to check or add collection here, as collections are managed separately
 
         localStorage.setItem('resourceLibrary', JSON.stringify(resourceLibraryArray));
       }
@@ -50,21 +44,19 @@ function viewEditableResource(){
       if(resource.resourceId === getResourceId()){
         document.querySelector('#resourceTitle').textContent = resource.resourceTitle;
         document.querySelector('#resourceDetailsData').textContent = resource.resourceDetails;
-        viewCollection(resource.resourceCollection);
+        viewCollection(resource.collectionId); // Pass collectionId
         document.querySelector('#resourceUrlData').textContent = resource.resourceLink;
 
         // Trim content after loading
         trimTextContent(document.querySelector('#resourceTitle'));
         trimTextContent(document.querySelector('#resourceDetailsData'));
-        /*trimTextContent(document.querySelector('#resourceCollectionData'));*/
         trimTextContent(document.querySelector('#resourceUrlData'));
       }
     });
 }
 
 // Function to view the collection options (dropdown menu)
-
-function viewCollection(resourceCollectionName){
+function viewCollection(selectedCollectionId){
     const collectionList = document.querySelector('#resourceCollectionData');
     clearSelectOptions(collectionList); // Clear previous options
 
@@ -78,7 +70,8 @@ function viewCollection(resourceCollectionName){
         const option = document.createElement('option');
         option.value = collection.collectionName;
         option.textContent = collection.collectionName;
-        if (collection.collectionName.toLowerCase() === resourceCollectionName?.toLowerCase()) {
+        option.setAttribute('collection-id', collection.collectionId);
+        if (collection.collectionId === selectedCollectionId) {
             option.selected = true;
         }
         collectionList.appendChild(option);

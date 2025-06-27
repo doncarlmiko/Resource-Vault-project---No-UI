@@ -1,5 +1,5 @@
 'use strict';
-import { resourceCollectionArray, storeArrayToLocalStorage, localStorageResources } from './arrayData.js';
+import {resourceLibraryArray,resourceCollectionArray, storeArrayToLocalStorage, localStorageResources } from './arrayData.js';
 
 const editCollectionConfirm = document.querySelector('#editCollectionConfirm');
 const editCollectionCancel = document.querySelector('#editCollectionCancel');
@@ -21,6 +21,8 @@ function handleEditCollection(event) {
 
     // Find the collection to edit
     const collectionIndex = resourceCollectionArray.findIndex(collection => collection.collectionId === collectionId);
+
+    const collectionList = resourceCollectionArray.find(collection => collection.collectionId === collectionId);
     
     if (collectionIndex === -1) {
         alert('Collection not found.');

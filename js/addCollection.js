@@ -1,5 +1,5 @@
 'use strict';
-import { resourceCollectionArray, storeArrayToLocalStorage, localStorageResources } from './arrayData.js';
+import { resourceCollectionArray, uuidCollection, storeArrayToLocalStorage, localStorageResources } from './arrayData.js';
 
 const addCollectionConfirm = document.querySelector('#addCollectionConfirm');
 addCollectionConfirm.addEventListener('click', handleAddCollection);
@@ -8,7 +8,7 @@ addCollectionConfirm.addEventListener('click', handleAddCollection);
 function Collection(title, description, id) {
     this.collectionName = title;
     this.collectionDescription = description;
-    this.collectionId = self.crypto.randomUUID();
+    this.collectionId = id;
 }
 
 function handleAddCollection(event) {
@@ -31,7 +31,7 @@ function handleAddCollection(event) {
     }
 
     // Create and add new collection
-    const newCollection = new Collection(collectionTitle, collectionDescription);
+    const newCollection = new Collection(collectionTitle, collectionDescription,uuidCollection);
     resourceCollectionArray.push(newCollection);
     storeArrayToLocalStorage();
     alert('Collection added successfully');

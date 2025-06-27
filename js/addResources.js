@@ -1,24 +1,30 @@
 'use strict';
 //import {localStorageResources} from './resourcevault.js';
-import {resourceLibraryArray, resourceCollectionArray, localStorageResources, storeArrayToLocalStorage, uuid, uuidCollection} from './arrayData.js';
+import {resourceLibraryArray, resourceCollectionArray, localStorageResources, storeArrayToLocalStorage, uuid} from './arrayData.js';
 
 const AddResourceButton = document.querySelector('#addResourceButton');
 AddResourceButton.addEventListener('click', ResourceVault);
 
 // Constructor function
-function Resources(title, description, collection, url, id) {
+function Resources(title, description, url, resourceId,collectionsId) {
     this.resourceTitle = title;
     this.resourceDetails = description;
-    this.resourceCollection = collection;
     this.resourceLink = url;
-    this.resourceId = id;
+    this.resourceId = resourceId;
+    this.collectionId = collectionsId;
 }
 // Function to handle adding resources to the vault
 function ResourceVault() {
     // Get form values when button is clicked
     const resourceTitle = document.querySelector('#resourceTitle').value.trim();
     const resourceDetailsInput = document.querySelector('#resourceDetails').value.trim();
-    const resourceCollection = document.querySelector('#resourceCollectionData').value;
+
+    //Get the value of the selected collection and it's unique ID
+    const collectionSelect = document.querySelector('#resourceCollectionData');
+    const selectedOption = collectionSelect.options[collectionSelect.selectedIndex];
+    //const resourceCollection = selectedOption.value;
+    const resourceCollectionId = selectedOption.getAttribute('collection-id');
+
 
     const resourceLink = document.querySelector('#resourceUrl').value.trim();
     const resourceExists = resourceLibraryArray.filter((resource)=> resource.resourceTitle.toLowerCase() === resourceTitle.toLowerCase());
@@ -33,9 +39,10 @@ function ResourceVault() {
         return;
     }
 
+    if(resourceCollectionId === '') return;
     //instantiate a new Resources object
     // using the constructor function
-    const resourceLibrary = new Resources(resourceTitle, resourceDetailsInput, resourceCollection, resourceLink, uuid);
+    const resourceLibrary = new Resources(resourceTitle, resourceDetailsInput, resourceLink, uuid, resourceCollectionId);
     
     // Add to arrays
     resourceLibraryArray.push(resourceLibrary);
@@ -62,6 +69,11 @@ function viewCollection(){
       const option = document.createElement('option');
       option.value = collection.collectionName;
       option.textContent = collection.collectionName;
+
+      if (option !== '') {
+        option.selected = true;
+        option.setAttribute('collection-id',collection.collectionId);
+    }
       collectionList.appendChild(option);
   });
 }

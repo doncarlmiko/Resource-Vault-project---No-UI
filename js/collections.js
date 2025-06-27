@@ -58,7 +58,7 @@ function displayCollectionLibrary(){
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Delete';
                 deleteButton.style.marginLeft = '10px';
-                deleteButton.addEventListener('click', () => deleteCollection(collection.collectionId,collection.collectionName));
+                deleteButton.addEventListener('click', () => deleteCollection(collection.collectionId));
 
                 collectionDivItem.appendChild(deleteButton);
     
@@ -69,11 +69,11 @@ function displayCollectionLibrary(){
 }
 
 // Function to delete the collection
-function deleteCollection(collectionId,collectionName) {
+function deleteCollection(collectionId) {
     const index = resourceCollectionArray.findIndex(collection => collection.collectionId === collectionId);
     
     //filter the resources that are in the collection to be deleted
-    const resourceFiltered = resourceLibraryArray.filter(resource => resource.resourceCollection.toLowerCase() === collectionName.toLowerCase());
+    const resourceFiltered = resourceLibraryArray.filter(resource => resource.collectionId === collectionId);
 
     //delete the collection
     if(index !== -1){
@@ -85,7 +85,7 @@ function deleteCollection(collectionId,collectionName) {
         //delete the resources that are in the collection.
         if(resourceFiltered){
             resourceFiltered.forEach(resource => {
-                resource.resourceCollection = '';
+                resource.collectionId = '';
                 localStorage.setItem('resourceLibrary', JSON.stringify(resourceLibraryArray));
             });
         }
