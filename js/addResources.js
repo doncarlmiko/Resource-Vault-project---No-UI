@@ -1,15 +1,14 @@
 'use strict';
 //import {localStorageResources} from './resourcevault.js';
-import {resourceLibraryArray, resourceCollectionArray, localStorageResources, storeArrayToLocalStorage, uuid, uuidCollection} from './arrayData.js';
+import {resourceLibraryArray, resourceCollectionArray, localStorageResources, storeArrayToLocalStorage, uuid} from './arrayData.js';
 
 const AddResourceButton = document.querySelector('#addResourceButton');
 AddResourceButton.addEventListener('click', ResourceVault);
 
 // Constructor function
-function Resources(title, description, collection, url, resourceId,collectionsId) {
+function Resources(title, description, url, resourceId,collectionsId) {
     this.resourceTitle = title;
     this.resourceDetails = description;
-    this.resourceCollection = collection;
     this.resourceLink = url;
     this.resourceId = resourceId;
     this.collectionId = collectionsId;
@@ -23,13 +22,11 @@ function ResourceVault() {
     //Get the value of the selected collection and it's unique ID
     const collectionSelect = document.querySelector('#resourceCollectionData');
     const selectedOption = collectionSelect.options[collectionSelect.selectedIndex];
-    const resourceCollection = selectedOption.value;
+    //const resourceCollection = selectedOption.value;
     const resourceCollectionId = selectedOption.getAttribute('collection-id');
 
     const resourceLink = document.querySelector('#resourceUrl').value.trim();
     const resourceExists = resourceLibraryArray.filter((resource)=> resource.resourceTitle.toLowerCase() === resourceTitle.toLowerCase());
-
-    let collectionId;
 
     if(resourceExists.length > 0){
       alert('Resource already exists');
@@ -45,7 +42,7 @@ function ResourceVault() {
 
     //instantiate a new Resources object
     // using the constructor function
-    const resourceLibrary = new Resources(resourceTitle, resourceDetailsInput, resourceCollection, resourceLink, uuid, resourceCollectionId);
+    const resourceLibrary = new Resources(resourceTitle, resourceDetailsInput, resourceLink, uuid, resourceCollectionId);
     
     // Add to arrays
     resourceLibraryArray.push(resourceLibrary);
@@ -58,7 +55,7 @@ function ResourceVault() {
 
 // Function to view the collection options (dropdown menu)
 
-function viewCollection(resourceCollectionName){
+function viewCollection(){
   const collectionList = document.querySelector('#resourceCollectionData');
   clearSelectOptions(collectionList); // Clear previous options
 

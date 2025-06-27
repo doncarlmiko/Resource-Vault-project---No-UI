@@ -22,7 +22,7 @@ function displayResourceLibrary(){
         else {
             // Check if there are any resources in this collection
             const resourcesInCollection = resourceLibraryArray.filter(resource => 
-                resource.resourceCollection.toLowerCase() === getResourceCollection.collectionName.toLowerCase()
+                resource.collectionId === getResourceCollection.collectionId
             );
             
             if(resourcesInCollection.length === 0){
@@ -30,7 +30,7 @@ function displayResourceLibrary(){
             }
             else {
                 resourceLibraryArray.forEach((resource) => {
-                    if(resource.resourceCollection.toLowerCase() === getResourceCollection.collectionName.toLowerCase()){
+                    if(resource.collectionId === getResourceCollection.collectionId){
                         //create a div element to store the resources informations
                         const resourceDivItem = document.createElement('div');
             
@@ -83,7 +83,7 @@ function deleteResource(resourceId) {
     const index = resourceLibraryArray.findIndex(resource => resource.resourceId === resourceId);
 
     if(index !== -1){
-        resourceLibraryArray[index].resourceCollection = '';
+        resourceLibraryArray[index].collectionId = '';
         localStorage.setItem('resourceLibrary', JSON.stringify(resourceLibraryArray));          
         location.reload();
     }
