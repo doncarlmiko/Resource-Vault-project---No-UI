@@ -25,9 +25,27 @@ function displayResourceLibrary(){
                 const resourceUrlItem = document.createElement('p');
                 resourceUrlItem.textContent = resource.resourceLink;
     
-                 const resourceDetailsItem = document.createElement('p');
-                 resourceDetailsItem.textContent = resource.resourceDetails;
-                
+                // Truncate resource details and add 'See more' if needed
+                const resourceDetailsItem = document.createElement('p');
+                let detailsText = resource.resourceDetails;
+                const maxLength = 100;
+                let isTruncated = false;
+                if (detailsText && detailsText.length > maxLength) {
+                    detailsText = detailsText.slice(0, maxLength) + '...';
+                    isTruncated = true;
+                }
+                resourceDetailsItem.textContent = detailsText;
+                if (isTruncated) {
+                    const seeMore = document.createElement('a');
+                    seeMore.textContent = ' See more';
+                    seeMore.style.color = 'blue';
+                    seeMore.style.fontSize = '0.95em';
+                    seeMore.style.fontWeight = '500';
+                    seeMore.style.marginLeft = '6px';
+                    seeMore.href = '../edit resources page.html';
+                    resourceDetailsItem.appendChild(seeMore);
+                }
+    
                 // Add data attribute for resource ID
                 resourceDivItem.setAttribute('data-resource-id', resource.resourceId);
     

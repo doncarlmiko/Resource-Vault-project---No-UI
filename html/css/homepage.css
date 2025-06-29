@@ -62,6 +62,11 @@ body {
   border-bottom: 3px solid var(--secondary);
 }
 
+.rv-tab:hover{
+  color: var(--secondary);
+  border-bottom: 3px solid var(--secondary);
+}
+
 main {
   background: var(--light-gray);
   min-height: 100vh;
