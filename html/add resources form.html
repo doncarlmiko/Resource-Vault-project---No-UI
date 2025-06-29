@@ -4,33 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resource Vault - Add Resources form</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/homepage.css">
+    <link rel="stylesheet" href="css/add-resources-page.css">
 </head>
 <body>
-    <!--Sample layout for Adding Resources-->
-    <form id="addResourceForm">
-        <div class="resource-field">
-            <label for="resourceTitle">Resource Title: </label>
-            <input type="text" id="resourceTitle" name="resourceTitle">
+    <header class="rv-header">
+        <div class="rv-header-title">Resource Vault</div>
+    </header>
+    <nav class="rv-nav">
+        <a class="rv-tab" href="index.html">All Resources</a>
+        <a class="rv-tab" href="collections home page.html">Collections</a>
+        <!--<a class="rv-tab" href="#">Favorites</a>-->
+    </nav>
+    <main>
+        <div class="rv-resource-container rv-add-resource-container">
+            <h2 class="rv-section-title">Add Resources</h2>
+            <form id="addResourceForm">
+                <div class="rv-form-field inline-field">
+                    <label for="resourceTitle">Resource Title:</label>
+                    <input type="text" id="resourceTitle" name="resourceTitle" class="rv-resource-card-desc" />
+                </div>
+                <div class="rv-form-field inline-field">
+                    <label for="resourceUrl">Resource Link:</label>
+                    <input type="text" id="resourceUrl" name="resourceUrl" class="rv-resource-card-desc" />
+                </div>
+                <div class="rv-form-field inline-field">
+                    <label for="resourceCollectionData">Collection name:</label>
+                    <select id="resourceCollectionData" name="resourceCollectionData"></select>
+                </div>
+                <div class="rv-form-field">
+                    <label for="resourceDetails">Resource Details:</label>
+                    <textarea id="resourceDetails" name="resourceDetails" class="rv-resource-card-desc rv-edit-textarea"></textarea>
+                </div>
+                <div class="rv-edit-btn-group">
+                    <button type="button" id="addResourceButton" class="rv-add-btn">Save Changes</button>
+                </div>
+            </form>
         </div>
-
-        <div class="resource-field">
-            <label for="resourceUrl">Resource Link: </label>
-            <input type="text" id="resourceUrl" name="resourceUrl">
-        </div>
-
-        <div class="resource-field">
-            <label for="resourceCollectionData">Resource Collection: </label>
-            <select id="resourceCollectionData" name="resourceCollectionData">
-            </select>
-        </div>
-
-        <div class="resource-field">
-            <label for="resourceDetails">Resource Details: </label>
-            <textarea id="resourceDetails" name="resourceDetails"></textarea>
-        </div>
-
-        <button type='button' id="addResourceButton">Save Changes</button>
-    </form>
+    </main>
     <script type="module" src="js/addResources.js" defer></script>
 </body>
 </html>
