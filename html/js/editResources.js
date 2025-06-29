@@ -86,14 +86,14 @@ function deleteResource() {
       resourceLibraryArray.splice(index, 1);
       localStorage.setItem('resourceLibrary', JSON.stringify(resourceLibraryArray)); 
       alert('Resource deleted successfully');
-      location.href='../html/index.html';
+      location.href = 'index.html';
   }
 }
 
 // Function to view the reading mode resource
 function readingModeResource(){
   localStorage.setItem('resourceId', getResourceId());
-  location.href = `../html/reading mode resources.html?resourceId=${getResourceId()}`;
+  location.href = 'reading mode resources.html?resourceId=' + getResourceId();
 }
 
 // Load resources and collections from localStorage when the page loads
