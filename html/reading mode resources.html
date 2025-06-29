@@ -4,27 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resource Vault - Reading Mode</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/homepage.css">
+    <link rel="stylesheet" href="css/reading-mode-page.css">
 </head>
 <body>
-    <!--Reading Mode layout for Resources-->
-    <h2 id="resourceTitle"></h2>
-
-    <div class="resource-field">
-        <label>Resource Link: </label>
-        <span id="resourceUrlData"></span>
-    </div>
-
-    <div class="resource-field">
-        <label>Resource Collection: </label>
-        <span id="resourceCollectionData"></span>
-    </div>
-
-    <div class="resource-field">
-        <label>Resource Details: </label>
-        <span id="resourceDetailsData"></span>
-    </div>
-
-
+    <header class="rv-header">
+        <div class="rv-header-title">Resource Vault</div>
+    </header>
+    <nav class="rv-nav">
+        <a class="rv-tab" href="index.html">All Resources</a>
+        <a class="rv-tab" href="collections home page.html">Collections</a>
+        <!--<a class="rv-tab" href="#">Favorites</a>-->
+    </nav>
+    <main>
+        <div class="rv-resource-container rv-reading-mode-container">
+            <h2 class="rv-section-title" id="resourceTitle">Resource Title</h2>
+            <div class="rv-form-field inline-field">
+                <label>Resource Link:</label>
+                <span id="resourceUrlData" class="rv-resource-card-desc"></span>
+            </div>
+            <div class="rv-form-field inline-field">
+                <label>Collection name:</label>
+                <span id="resourceCollectionData" class="rv-resource-card-desc"></span>
+            </div>
+            <div class="rv-form-field">
+                <label>Resource Details:</label>
+                <span id="resourceDetailsData" class="rv-resource-card-desc rv-edit-textarea"></span>
+            </div>
+        </div>
+    </main>
     <script type="module" src="js/readingResources.js" defer></script>
 </body>
 </html>

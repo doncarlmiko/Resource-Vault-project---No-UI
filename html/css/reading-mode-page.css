@@ -1,0 +1,101 @@
+main {
+  background: var(--light-gray);
+  min-height: 100vh;
+  padding: 0.5rem 0 0 0;
+}
+
+.rv-reading-mode-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--light-gray);
+  border-radius: 8px;
+  padding: 0rem 2rem 3rem 2rem;
+}
+
+.rv-section-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.rv-form-field label {
+  font-size: 1rem;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.rv-form-field {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.rv-form-field.inline-field {
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rv-form-field.inline-field label {
+  min-width: 140px;
+  margin-bottom: 0;
+}
+
+.rv-form-field.inline-field span {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.rv-form-field.inline-field #resourceCollectionData {
+  border: none;
+  background: var(--light-gray);
+  padding: 0;
+}
+
+.rv-edit-textarea {
+  width: 100%;
+  min-height: 250px;
+  border-radius: 6px;
+  padding: 0.7rem;
+  font-size: 1rem;
+  font-family: inherit;
+  background: transparent;
+  color: var(--text-color);
+  box-sizing: border-box;
+  display: block;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@media (max-width: 900px) {
+  .rv-reading-mode-container {
+    max-width: 100%;
+    padding: 1rem 0.5rem 1.5rem 0.5rem;
+  }
+  .rv-section-title {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  .rv-form-field.inline-field label {
+    min-width: 100px;
+    font-size: 1rem;
+  }
+  .rv-edit-textarea {
+    font-size: 0.98rem;
+    min-height: 160px;
+  }
+}
+
+@media (max-width: 600px) {
+  .rv-reading-mode-container {
+    max-width: 100%;
+    padding: 1rem 0.2rem 1.5rem 0.2rem;
+  }
+  .rv-edit-textarea {
+    min-height: 220px;
+  }
+} 

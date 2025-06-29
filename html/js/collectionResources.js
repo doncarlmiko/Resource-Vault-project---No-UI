@@ -66,7 +66,6 @@ function displayResourceLibrary(){
 
                         resourceDivItem.addEventListener('click', (e) => {
                             e.preventDefault();
-
                             if(e.target !== deleteButton){
                                 localStorage.setItem('resourceId', resource.resourceId);
                                 location.href = `edit resources page.html?resourceId=${resource.resourceId}`;

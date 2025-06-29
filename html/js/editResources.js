@@ -24,7 +24,7 @@ function editResourceVault() {
         const selectedCollectionId = selectedOption.getAttribute('collection-id');
 
         resource.resourceTitle = document.querySelector('#resourceTitle').textContent;
-        resource.resourceDetails = document.querySelector('#resourceDetailsData').textContent;
+        resource.resourceDetails = document.querySelector('#resourceDetailsData').value;
         resource.collectionId = selectedCollectionId;
         resource.resourceLink = document.querySelector('#resourceUrlData').textContent;
 
@@ -43,7 +43,7 @@ function viewEditableResource(){
     resourceLibraryArray.find(resource => {
       if(resource.resourceId === getResourceId()){
         document.querySelector('#resourceTitle').textContent = resource.resourceTitle;
-        document.querySelector('#resourceDetailsData').textContent = resource.resourceDetails;
+        document.querySelector('#resourceDetailsData').value = resource.resourceDetails;
         viewCollection(resource.collectionId); // Pass collectionId
         document.querySelector('#resourceUrlData').textContent = resource.resourceLink;
 
@@ -86,14 +86,15 @@ function deleteResource() {
       resourceLibraryArray.splice(index, 1);
       localStorage.setItem('resourceLibrary', JSON.stringify(resourceLibraryArray)); 
       alert('Resource deleted successfully');
-      location.href='../html/home page.html';
+
+      location.href = 'index.html';
   }
 }
 
 // Function to view the reading mode resource
 function readingModeResource(){
   localStorage.setItem('resourceId', getResourceId());
-  location.href = `../html/reading mode resources.html?resourceId=${getResourceId()}`;
+  location.href = 'reading mode resources.html?resourceId=' + getResourceId();
 }
 
 // Load resources and collections from localStorage when the page loads

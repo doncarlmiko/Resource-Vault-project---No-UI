@@ -3,33 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/homepage.css">
     <title>Resource Vault - Edit Resources form</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/homepage.css">
+    <link rel="stylesheet" href="css/edit-resources-page.css">
 </head>
 <body>
-    <!--Sample layout for Editing Resources-->
-    <h2 type="text" id="resourceTitle" contenteditable="true"></h2>
-
-    <div class="resource-field">
-        <label>Resource Link: </label>
-        <span id="resourceUrlData" contenteditable="true"></span>
-    </div>
-
-    <div class="resource-field">
-        <label>Resource Collection: </label>
-        <select title="resourceCollectionData" id="resourceCollectionData" name="resourceCollectionData">
-        </select>
-    </div>
-
-    <div class="resource-field">
-        <label>Resource Details: </label>
-        <span id="resourceDetailsData" contenteditable="true"></span>
-    </div>
-
-    <button type='button' id="saveResourceButton">Save Changes</button>
-    <button type='button' id="deleteResourceButton">Delete this resources</button>
-    <button type='button' id="readingModeResourceButton">Reading Mode</button>
-
+    <header class="rv-header">
+        <div class="rv-header-title">Resource Vault</div>
+    </header>
+    <nav class="rv-nav">
+        <a class="rv-tab" href="index.html">All Resources</a>
+        <a class="rv-tab" href="collections home page.html">Collections</a>
+        <!--<a class="rv-tab" href="#">Favorites</a>-->
+    </nav>
+    <main>
+        <div class="rv-resource-container rv-edit-resource-container">
+            <h2 class="rv-section-title" id="resourceTitle" contenteditable="true">Resource Title</h2>
+            <div class="rv-form-field inline-field">
+                <label for="resourceUrlData">Resource link:</label>
+                <span id="resourceUrlData" contenteditable="true" class="rv-resource-card-desc"></span>
+            </div>
+            <div class="rv-form-field inline-field">
+                <label for="resourceCollectionData">Collection name:</label>
+                <select id="resourceCollectionData" name="resourceCollectionData"></select>
+            </div>
+            <div class="rv-edit-btn-group">
+                <button type="button" id="saveResourceButton" class="rv-add-btn">Save Changes</button>
+                <button type="button" id="deleteResourceButton" class="rv-resource-card-btn">Delete this resources</button>
+                <button type="button" id="readingModeResourceButton" class="rv-secondary-btn">Reading mode</button>
+            </div>
+            <hr class="rv-divider">
+            <div class="rv-form-field">
+                <label for="resourceDetailsData">Resource Details:</label>
+                <textarea id="resourceDetailsData" class="rv-resource-card-desc rv-edit-textarea"></textarea>
+            </div>
+        </div>
+    </main>
     <script type="module" src="js/editResources.js" defer></script>
 </body>
 </html>
