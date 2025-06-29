@@ -4,20 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resource Vault - Resources</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/homepage.css">
 </head>
 <body>
-
-    <!--Sample layout that displays the Resources to their respective Collections-->
-    <div id="resourceContainer">
-        <h2>Resources</h2>
-
-        <a href="add resources form.html"><button type='button' id="addResourceButton" value="Add Resource">Add Resource</button></a>
-        
-        <div id="resourceList">
-            
+    <header class="rv-header">
+        <div class="rv-header-title">Resource Vault</div>
+    </header>
+    <nav class="rv-nav">
+        <a class="rv-tab active" href="index.html">All Resources</a>
+        <a class="rv-tab" href="collections home page.html">Collections</a>
+    </nav>
+    <main>
+        <div id="resourceContainer" class="rv-resource-container">
+            <h2 class="rv-section-title">All Resources</h2>
+            <a href="add resources form.html"><button type='button' id="addResourceButton" class="rv-add-btn" value="Add Resource">ADD</button></a>
+            <div id="resourceList" class="rv-resource-list">
+                <!-- Resource cards will be rendered here -->
+            </div>
         </div>
-    </div>
-
+    </main>
     <script type="module" src="js/resourcevault.js" defer></script>
-
+</body>
 </html>

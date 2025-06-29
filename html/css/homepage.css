@@ -9,3 +9,215 @@
     color: #333;
     background-color: #fff;
 }
+
+:root {
+  --primary: #2C3E50;
+  --secondary: #1ABC9C;
+  --light-gray: #F8F9FA;
+  --text-color: #333333;
+  --warm-yellow: #F4D03F;
+  --card--color:#E0F2F1;
+}
+
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: var(--primary);
+  margin: 0;
+  color: var(--text-color);
+}
+
+.rv-header {
+  background: var(--primary);
+  color: #fff;
+  padding: 1.5rem 0 0.5rem 2rem;
+}
+
+.rv-header-title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.rv-nav {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.rv-tab {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin-right: 2rem;
+  padding: 1rem 0.5rem 0.5rem 0.5rem;
+  border-bottom: 3px solid transparent;
+  transition: border 0.2s, color 0.2s;
+}
+
+.rv-tab.active {
+  color: var(--secondary);
+  border-bottom: 3px solid var(--secondary);
+}
+
+.rv-tab:hover{
+  color: var(--secondary);
+  border-bottom: 3px solid var(--secondary);
+}
+
+main {
+  background: var(--light-gray);
+  min-height: 100vh;
+  padding: 0.5rem 0 0 0;
+}
+
+.rv-resource-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--light-gray);
+  border-radius: 8px;
+  padding: 0rem 2rem 3rem 2rem;
+}
+
+.rv-section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  margin-top: 0.5rem;
+  color: var(--primary);
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.rv-add-btn {
+  background: var(--warm-yellow);
+  color: var(--text-color);
+  font-weight: 700;
+  border: none;
+  border-radius: 4px;
+  padding: 0.7rem 2.2rem;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(44,62,80,0.08);
+  transition: background 0.2s;
+}
+.rv-add-btn:hover {
+  background: #ffe066;
+}
+
+.rv-resource-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.rv-resource-card {
+  background-color: var(--card--color);
+  border-radius: 10px;
+  box-shadow: 2px 5px 4px rgba(0,0,0,0.12);
+  padding: 1.2rem 1rem 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 140px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease ,background-color 0.5s;
+}
+
+.rv-resource-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 2px 8px 20px rgba(0,0,0,0.15);
+  color:white;
+  background-color: var(--secondary);
+}
+
+.rv-resource-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+.rv-resource-card-desc {
+  font-size: 0.98rem;
+  color: var(--text-color);
+  margin-bottom: 0.7rem;
+}
+
+.rv-resource-card-btn {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.4rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-end;
+  transition: background 0.2s;
+}
+
+.rv-resource-card-btn:hover {
+  background: #c0392b;
+}
+
+.rv-resource-card > * {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive styles */
+@media (max-width: 900px) {
+  .rv-resource-container {
+    padding: 1.2rem 0.5rem 2rem 0.5rem;
+  }
+  .rv-resource-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .rv-header {
+    padding: 1rem 0 0.5rem 1rem;
+  }
+  .rv-header-title {
+    font-size: 1.3rem;
+  }
+  .rv-nav {
+    padding-left: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .rv-tab {
+    font-size: 1rem;
+    margin-right: 1.2rem;
+    padding: 0.7rem 0.2rem 0.3rem 0.2rem;
+  }
+  .rv-resource-container {
+    max-width: 100%;
+    padding: 1rem 0.2rem 1.5rem 0.2rem;
+  }
+  .rv-section-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .rv-add-btn {
+    font-size: 1rem;
+    padding: 0.5rem 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  .rv-resource-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .rv-resource-card {
+    min-height: 100px;
+    padding: 0.8rem 0.7rem 0.8rem 0.8rem;
+  }
+  main {
+    padding: 1rem 0 0 0;
+  }
+}
