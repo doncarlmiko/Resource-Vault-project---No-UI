@@ -86,6 +86,7 @@ function deleteResource() {
       resourceLibraryArray.splice(index, 1);
       localStorage.setItem('resourceLibrary', JSON.stringify(resourceLibraryArray)); 
       alert('Resource deleted successfully');
+
       location.href = 'index.html';
   }
 }
