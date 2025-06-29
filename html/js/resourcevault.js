@@ -42,7 +42,8 @@ function displayResourceLibrary(){
                     seeMore.style.fontSize = '0.95em';
                     seeMore.style.fontWeight = '500';
                     seeMore.style.marginLeft = '6px';
-                    seeMore.href = '../edit resources page.html';
+
+                    seeMore.href = 'edit resources page.html';
                     resourceDetailsItem.appendChild(seeMore);
                 }
     
@@ -85,7 +86,7 @@ function deleteResource(resourceId) {
     if(index !== -1){
         resourceLibraryArray.splice(index, 1);
         localStorage.setItem('resourceLibrary', JSON.stringify(resourceLibraryArray));          
-        location.href = 'home page.html';
+        location.href = 'index.html';
     }
 }
 
