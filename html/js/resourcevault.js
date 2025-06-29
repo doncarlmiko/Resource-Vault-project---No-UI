@@ -31,8 +31,8 @@ function displayResourceLibrary(){
                 // Add data attribute for resource ID
                 resourceDivItem.setAttribute('data-resource-id', resource.resourceId);
     
-                resourceDivItem.style.backgroundColor = 'lightblue';
-    
+                resourceDivItem.style.backgroundColor = '#E0F2F1';
+                resourceDivItem.classList.add('rv-resource-card');
                 resourceDivItem.appendChild(resourceTitleItem);
                 resourceDivItem.appendChild(resourceUrlItem);
                 resourceDivItem.appendChild(resourceDetailsItem);
