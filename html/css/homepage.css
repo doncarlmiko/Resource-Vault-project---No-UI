@@ -16,7 +16,7 @@
   --light-gray: #F8F9FA;
   --text-color: #333333;
   --warm-yellow: #F4D03F;
-  --card--color:E0F2F1;
+  --card--color:#E0F2F1;
 }
 
 body {
@@ -110,7 +110,7 @@ main {
 }
 
 .rv-resource-card {
-  /*background: #eafaf8;*/
+  background-color: var(--card--color);
   border-radius: 10px;
   box-shadow: 2px 5px 4px rgba(0,0,0,0.12);
   padding: 1.2rem 1rem 1.2rem 1.2rem;
@@ -118,6 +118,14 @@ main {
   flex-direction: column;
   justify-content: space-between;
   min-height: 140px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease ,background-color 0.5s;
+}
+
+.rv-resource-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 2px 8px 20px rgba(0,0,0,0.15);
+  color:white;
+  background-color: var(--secondary);
 }
 
 .rv-resource-card-title {
@@ -145,6 +153,7 @@ main {
   align-self: flex-end;
   transition: background 0.2s;
 }
+
 .rv-resource-card-btn:hover {
   background: #c0392b;
 }

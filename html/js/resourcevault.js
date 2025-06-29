@@ -31,7 +31,6 @@ function displayResourceLibrary(){
                 // Add data attribute for resource ID
                 resourceDivItem.setAttribute('data-resource-id', resource.resourceId);
     
-                resourceDivItem.style.backgroundColor = '#E0F2F1';
                 resourceDivItem.classList.add('rv-resource-card');
                 resourceDivItem.appendChild(resourceTitleItem);
                 resourceDivItem.appendChild(resourceUrlItem);
@@ -41,6 +40,7 @@ function displayResourceLibrary(){
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Delete';
                 deleteButton.style.marginLeft = '10px';
+                deleteButton.classList.add('rv-resource-card-btn');
                 deleteButton.addEventListener('click', () => deleteResource(resource.resourceId,resource.resourceCollection));
     
                 resourceDivItem.appendChild(deleteButton);
